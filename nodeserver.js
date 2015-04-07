@@ -28,7 +28,7 @@ http.createServer(function(req, res) {
       }
 
       res.writeHead(200);
-      res.write(google, "binary"); /
+      res.write(google, "binary");
       res.end(file);
     });
   });
