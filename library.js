@@ -9,15 +9,19 @@ function Book(author, title) {
   this.title = title;
 }
 
-var addBookToShelf = function(shelf, Book) {
-  shelf.push(Book);
-  return shelf;
+function Shelf() {
+
 }
 
-var removeBookFromShelf = function(shelf, title) {
-    var index = shelf.indexOf(title);
-    shelf.splice(index, 1);
-    return shelf;
+Array.prototype.addBookToShelfTwo = function(Book) {
+  this.push(Book);
+  return this;
+}
+
+Array.prototype.removeBookFromShelf = function(title) {
+  var index = this.indexOf(title);
+  this.splice(index, 1);
+  return this;
 }
 
 Library.prototype.addShelf = function (name) {
@@ -28,7 +32,6 @@ Library.prototype.removeShelf = function (name){
 delete library[name];
 }
 
-//example code
 var book1 = new Book("Stephen Colbert", "my america");
 var book2 = new Book("JRR Tolkien", "journey into the unknown");
 var book3 = new Book("That one author", "awesome");
@@ -39,9 +42,12 @@ library.addShelf("Shelf1");
 library.addShelf("Shelf2");
 library.addShelf("CrookedShelf");
 
-addBookToShelf(library.Shelf1, book1);
-addBookToShelf(library.Shelf2, book2);
-addBookToShelf(library.CrookedShelf, book3);
-
-removeBookFromShelf(library.Shelf1, "my america");
 library.removeShelf("CrookedShelf")
+
+library.Shelf1.addBookToShelf(book2)
+library.Shelf1.addBookToShelf(book3)
+library.Shelf1.addBookToShelf(book1)
+
+library.Shelf1.removeBookFromShelf("journey into the unknown")
+
+library;
