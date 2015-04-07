@@ -13,7 +13,7 @@ function Shelf() {
 
 }
 
-Array.prototype.addBookToShelfTwo = function(Book) {
+Array.prototype.addBookToShelf = function(Book) {
   this.push(Book);
   return this;
 }
