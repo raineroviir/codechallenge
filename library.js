@@ -1,53 +1,42 @@
-// to make this library modular, you can use require, EX: var b = require("./book.js"); 
-// or module exports, EX: module.exports.addBookToShelf = function(shelf, Book) { shelf.push(Book); return shelf; }
+// to make this library modular, use module exports, EX: module.exports.Shelf = //shelf constructor code
 
-
-function Library() {}
-
-function Book(author, title) {
-  this.author = author;
-  this.title = title;
+function Library()
+{
+  this.addShelf = function (shelfName)
+  {
+    return this[shelfName] = new Shelf();
+  }
+  this.removeShelf = function (shelfName)
+  {
+    delete this[shelfName];
+    return this
+  }
 }
 
-function Shelf() {
-
+function Shelf()
+{
+  this.remove = function(bookName)
+  {
+    delete this[bookName]
+    return this
+  }
+  this.add = function(bookName, author)
+  {
+    this[bookName] = author;
+    return this
+  }
 }
 
-Array.prototype.addBookToShelf = function(Book) {
-  this.push(Book);
-  return this;
-}
-
-Array.prototype.removeBookFromShelf = function(title) {
-  var index = this.indexOf(title);
-  this.splice(index, 1);
-  return this;
-}
-
-Library.prototype.addShelf = function (name) {
-  library[name] = new Array(0);
-}
-
-Library.prototype.removeShelf = function (name){
-delete library[name];
-}
-
-var book1 = new Book("Stephen Colbert", "my america");
-var book2 = new Book("JRR Tolkien", "journey into the unknown");
-var book3 = new Book("That one author", "awesome");
+//some data to populate the library:
 
 var library = new Library();
 
-library.addShelf("Shelf1");
-library.addShelf("Shelf2");
-library.addShelf("CrookedShelf");
+library.addShelf("Shelf1")
+.add("my america","Stephen Colbert")
+.add("journey into the unknown", "JRR Tolkien")
+.remove("my america")
+.remove("journey into the unknown")
 
-library.removeShelf("CrookedShelf")
+library.addShelf("Shelf99").add("awesome", "that one author")
+library.removeShelf("Shelf1")
 
-library.Shelf1.addBookToShelf(book2)
-library.Shelf1.addBookToShelf(book3)
-library.Shelf1.addBookToShelf(book1)
-
-library.Shelf1.removeBookFromShelf("journey into the unknown")
-
-library;
