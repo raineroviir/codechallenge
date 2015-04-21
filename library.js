@@ -36,12 +36,31 @@ function Book(author, pages) {
 
 var library = new Library();
 
-library.addShelf("Shelf1")
-.add("My America","Stephen Colbert", 500)
-.add("Journey into the unknown", "JRR Tolkien", 999)
-.remove("My America")
-.remove("Journey into the unknown")
-
-library.addShelf("Shelf99").add("Awesome", "That one author", 7)
+library.addShelf("Shelf1").add("My America","Stephen Colbert", 500).add("Journey into the unknown", "JRR Tolkien", 999).remove("My America").remove("Journey into the unknown")
+library.addShelf("Shelf99").add("Awesome", "That one author", 7).add("Journey into the unknown", "JRR Tolkien", 999)
 library.removeShelf("Shelf1")
+library.addShelf("Shelf98").add("Game of Thrones", "GRR Martin", 99).add("My America","Stephen Colbert", 500)
+library.addShelf("Shelf97").add("Game of Thrones", "GRR Martin", 99).add("My America","Stephen Colbert", 500)
+library.addShelf("Shelf96").add("Game of Thrones", "GRR Martin", 99).add("Journey into the unknown", "JRR Tolkien", 999)
+
+
+//additionaly functionality, searches the library
+//returns an array containing all the shelves the book is on.
+
+Library.prototype.search = function(bookName)
+{
+  var result = [];
+
+  for(var x in this)
+  {
+      if (typeof this[x][bookName] !== 'undefined' && typeof x !== 'undefined')
+      {
+      result.push(x);
+      }
+  }
+  return result
+}
+
+library.search("Game of Thrones")
+
 
