@@ -36,4 +36,4 @@ http.createServer(function(req, res) {
 
 console.log("Static file server running at localhost:3000")
 
-var google = '<a href="http://www.google.com">Google</a>';
+// var google = '<a href="http://www.google.com">Google</a>'; Ideally you don't put anything like this in the server file and instead put links like this into files that the server gets, such as index.html
